@@ -52,6 +52,16 @@ const Sidebar = () => {
                   <Link href="/initial-data" className='className="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-white duration-300 ease-in-out hover:bg-menuHover'>
                     Profile
                   </Link>
+                </li>{" "}
+                <li onClick={handleHideSidebar}>
+                  <Link href="/tasks" className='className="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-white duration-300 ease-in-out hover:bg-menuHover'>
+                    Tasks
+                  </Link>
+                </li>{" "}
+                <li onClick={handleHideSidebar}>
+                  <Link href="/projects" className='className="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-white duration-300 ease-in-out hover:bg-menuHover'>
+                    Projects
+                  </Link>
                 </li>
               </ul>
             </div>

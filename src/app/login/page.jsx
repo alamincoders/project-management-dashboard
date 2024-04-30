@@ -5,13 +5,15 @@ const LoginPage = () => {
   const onFinish = (values) => {
     console.log("Received values:", values);
     // Mock response for successful and unsuccessful logins
-    if (values.username === "admin" && values.password === "password") {
+    if (values.username === "admin" && values.password === "123456") {
       // Successful login
-      console.log("Login successful");
+      console.info("Login successful!");
     } else {
       // Unsuccessful login
-      console.log("Login failed");
+      console.error("Login failed");
+      console.log("Your default username: 'admin' and password: '123456'");
     }
+    alert("Please check console panel for mock response");
   };
 
   return (
