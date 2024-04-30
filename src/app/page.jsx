@@ -1,4 +1,5 @@
 import Link from "next/link";
+import UserPage from "./user/page";
 
 export default function Home() {
   return (
@@ -11,6 +12,9 @@ export default function Home() {
       <Link prefetch href="/initial-data">
         Prefetching Using initial data --- Good for SEO
       </Link>
+
+      <h1>Users Zustand</h1>
+      <UserPage />
     </div>
   );
 }
