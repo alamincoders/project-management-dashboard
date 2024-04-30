@@ -1,6 +1,6 @@
 "use client";
+import { useQuery } from "@tanstack/react-query";
 import { Button, List, message } from "antd";
-import { useQuery } from "react-query";
 
 const fetchProjects = async () => {
   // Mock API call to fetch projects data

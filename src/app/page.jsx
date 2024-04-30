@@ -1,9 +1,10 @@
+import Table from "@/components/ui/Table";
 import Link from "next/link";
 import UserPage from "./user/page";
 
 export default function Home() {
   return (
-    <div>
+    <div className="lg:pl-[18.125rem]">
       <h1>Welcome to Project Management Dashboard</h1>
       <Link href="/login">Login</Link>
       <br />
@@ -15,6 +16,9 @@ export default function Home() {
 
       <h1>Users Zustand</h1>
       <UserPage />
+
+      <br />
+      <Table />
     </div>
   );
 }
