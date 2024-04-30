@@ -11,7 +11,14 @@ const fetchProjects = async () => {
 };
 
 const ProjectsPage = () => {
-  const { data: projects, isLoading, isError } = useQuery("projects", fetchProjects);
+  const {
+    data: projects,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: "projects",
+    queryFn: fetchProjects,
+  });
 
   const handleView = (projectName) => {
     message.info(`Viewing ${projectName}`);
