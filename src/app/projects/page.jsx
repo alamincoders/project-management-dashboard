@@ -1,6 +1,7 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import { Button, List, message } from "antd";
+import Link from "next/link";
 
 const fetchProjects = async () => {
   // Mock API call to fetch projects data
@@ -20,16 +21,8 @@ const ProjectsPage = () => {
     queryFn: fetchProjects,
   });
 
-  const handleView = (projectName) => {
-    message.info(`Viewing ${projectName}`);
-  };
-
-  const handleEdit = (projectId) => {
-    message.info(`Editing project with ID ${projectId}`);
-  };
-
-  const handleDelete = (projectId) => {
-    message.error(`Deleting project with ID ${projectId} (This action is not implemented in this demo)`);
+  const handleView = (projectId) => {
+    message.info(`Viewing project with ID ${projectId}`);
   };
 
   return (
@@ -48,13 +41,15 @@ const ProjectsPage = () => {
                 <List.Item key={project.id} className="flex justify-between items-center border-b py-4">
                   <span className="text-lg">{project.name}</span>
                   <div className="space-x-4">
-                    <Button type="primary" onClick={() => handleView(project.name)} className="rounded">
-                      View
-                    </Button>
-                    <Button onClick={() => handleEdit(project.id)} className="rounded">
+                    <Link href={`/projects/${project.id}`}>
+                      <Button type="primary" className="rounded">
+                        View
+                      </Button>
+                    </Link>
+                    <Button onClick={() => handleView(project.id)} className="rounded">
                       Edit
                     </Button>
-                    <Button danger onClick={() => handleDelete(project.id)} className="rounded">
+                    <Button danger onClick={() => handleView(project.id)} className="rounded">
                       Delete
                     </Button>
                   </div>
