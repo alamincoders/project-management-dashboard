@@ -1,7 +1,9 @@
 "use client";
 import RecentActivities from "@/components/screen/RecentActivities";
+import { useProjectStore } from "@/store/project-store";
 import { useQuery } from "@tanstack/react-query";
 import { Button, Input, List, message, Select, Tabs } from "antd";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const { Option } = Select;
@@ -43,7 +45,7 @@ const ProjectDetailsPage = ({ params }) => {
 
   const [newTask, setNewTask] = useState("");
   const [assignee, setAssignee] = useState("");
-  const [project, setProject] = useState(null);
+  const { project, setProject } = useProjectStore();
 
   // Update project state with new task
   useEffect(() => {
@@ -62,7 +64,7 @@ const ProjectDetailsPage = ({ params }) => {
     const newTaskItem = { id: project.tasks.length + 1, description: newTask, assigneeId: assignee };
     const updatedTasks = [...project.tasks, newTaskItem];
     const updatedProject = { ...project, tasks: updatedTasks };
-    setProject(updatedProject); // Update project directly
+    setProject(updatedProject);
     message.success("Task added successfully");
     setNewTask("");
     setAssignee("");
@@ -105,7 +107,12 @@ const ProjectDetailsPage = ({ params }) => {
                     </Select>
                     <Button type="primary" onClick={handleAddTask} className="mt-2">
                       Add Task
-                    </Button>
+                    </Button>{" "}
+                    <Link href="/tasks">
+                      <Button type="link" className="mt-2 ml-2">
+                        Task Manage Board
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </TabPane>
