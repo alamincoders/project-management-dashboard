@@ -1,7 +1,7 @@
 export const cardsData = [
   {
     id: 0,
-    title: "Doing",
+    title: "To Do",
     components: [
       {
         id: 100,

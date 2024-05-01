@@ -90,7 +90,7 @@ const TaskManagementPage = () => {
       )}
 
       <Divider />
-      <DndBoard/>
+      <DndBoard />
     </div>
   );
 };
