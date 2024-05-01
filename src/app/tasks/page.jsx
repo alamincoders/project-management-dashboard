@@ -1,15 +1,20 @@
 "use client";
 import TaskList from "@/components/screen/TaskList";
+import useTaskStore from "@/store/task-store";
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Input, List, message, Modal } from "antd";
 import { useState } from "react";
 
 const TaskManagementPage = () => {
-  const [tasks, setTasks] = useState([]);
-  const [completedTasks, setCompletedTasks] = useState([]);
+  const tasks = useTaskStore((state) => state.tasks);
+  const completedTasks = useTaskStore((state) => state.completedTasks);
+  const addTask = useTaskStore((state) => state.addTask);
+  const editTask = useTaskStore((state) => state.editTask);
+  const completeTask = useTaskStore((state) => state.completeTask);
+  const uncompleteTask = useTaskStore((state) => state.uncompleteTask);
+
   const [newTask, setNewTask] = useState("");
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [editedTaskId, setEditedTaskId] = useState(null);
   const [showCompletedTasks, setShowCompletedTasks] = useState(false);
 
   const handleAddTask = () => {
@@ -26,40 +31,25 @@ const TaskManagementPage = () => {
       deadline,
       completed: false,
     };
-    setTasks([...tasks, newTaskItem]);
+    addTask(newTaskItem); // Call the addTask action from the store
     setNewTask("");
     message.success("Task added successfully");
     setIsModalVisible(false);
   };
 
   const handleEditTask = (taskId, newDescription) => {
-    const updatedTasks = tasks.map((task) => (task.id === taskId ? { ...task, description: newDescription } : task));
-    setTasks(updatedTasks);
+    editTask(taskId, newDescription); // Call the editTask action from the store
     message.success("Task updated successfully");
   };
 
   const handleCompleteTask = (taskId) => {
-    const taskToComplete = tasks.find((task) => task.id === taskId);
-    if (taskToComplete) {
-      // Move task to completedTasks
-      setCompletedTasks([...completedTasks, taskToComplete]);
-      // Remove task from tasks
-      const updatedTasks = tasks.filter((task) => task.id !== taskId);
-      setTasks(updatedTasks);
-      message.success("Task marked as completed");
-    }
+    completeTask(taskId); // Call the completeTask action from the store
+    message.success("Task marked as completed");
   };
 
   const handleUncompleteTask = (taskId) => {
-    const taskToUncomplete = completedTasks.find((task) => task.id === taskId);
-    if (taskToUncomplete) {
-      // Move task back to tasks
-      setTasks([...tasks, taskToUncomplete]);
-      // Remove task from completedTasks
-      const updatedCompletedTasks = completedTasks.filter((task) => task.id !== taskId);
-      setCompletedTasks(updatedCompletedTasks);
-      message.success("Task marked as uncompleted");
-    }
+    uncompleteTask(taskId); // Call the uncompleteTask action from the store
+    message.success("Task marked as uncompleted");
   };
 
   return (
@@ -84,14 +74,14 @@ const TaskManagementPage = () => {
       </Modal>
 
       {showCompletedTasks && (
-        <div>
+        <div className="mt-10">
           <h2 className="text-lg font-semibold mb-2">Completed Tasks:</h2>
           <List
             itemLayout="horizontal"
             dataSource={completedTasks}
-            renderItem={(item) => (
+            renderItem={(item, index) => (
               <List.Item>
-                <List.Item.Meta title={item.description} />
+                <List.Item.Meta title={item.description} key={index} />
               </List.Item>
             )}
           />
