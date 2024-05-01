@@ -1,8 +1,9 @@
 "use client";
+import DndBoard from "@/components/DndBoard";
 import TaskList from "@/components/screen/TaskList";
 import useTaskStore from "@/store/task-store";
 import { PlusOutlined } from "@ant-design/icons";
-import { Button, Input, List, message, Modal } from "antd";
+import { Button, Divider, Input, List, message, Modal } from "antd";
 import { useState } from "react";
 
 const TaskManagementPage = () => {
@@ -87,6 +88,9 @@ const TaskManagementPage = () => {
           />
         </div>
       )}
+
+      <Divider />
+      <DndBoard/>
     </div>
   );
 };

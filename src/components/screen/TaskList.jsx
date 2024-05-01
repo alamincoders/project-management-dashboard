@@ -35,7 +35,7 @@ const TaskList = ({ tasks, onCompleteTask, onEditTask }) => {
           </List.Item>
         )}
       />
-      <Modal title="Edit Task" visible={!!editTaskId} onOk={handleSaveEdit} onCancel={() => setEditTaskId(null)}>
+      <Modal title="Edit Task" open={!!editTaskId} onOk={handleSaveEdit} onCancel={() => setEditTaskId(null)}>
         <Input value={editTaskDescription} onChange={(e) => setEditTaskDescription(e.target.value)} placeholder="Enter updated task description" />
       </Modal>
     </>
