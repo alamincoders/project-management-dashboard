@@ -3,7 +3,7 @@ import { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiDownload, FiEye } from "react-icons/fi";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import data from "../../lib/FakeDB";
+import data from "../../bin/FakeDB";
 const Table = () => {
   const [tableData] = useState(data);
   const [entriesPerPage, setEntriesPerPage] = useState(10); // Updated to show 10 data per page
