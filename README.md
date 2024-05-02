@@ -3,7 +3,7 @@
   <h1>Application for Project Management 🔧💻</h1>
   
   <a href="https://github.com/alamincoders">
-     <img src="https://img.shields.io/github/follow/biantris_?style=social&logo=github"
+     <img src="https://img.shields.io/github/followers/alamincoders?label=Follow&style=social"
       alt="follow on Github">
   </a>
   
