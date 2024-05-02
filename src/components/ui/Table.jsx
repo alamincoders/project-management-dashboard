@@ -1,6 +1,6 @@
 "use client";
 import { data } from "@/bin/FakeDB";
-import { Table as AntdTable, Button, Input, Modal, Select } from "antd";
+import { Table as AntdTable, Button, Input, Modal, Select, notification } from "antd";
 import Link from "next/link";
 import { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -35,6 +35,13 @@ const Table = ({ projects }) => {
   const handleCancel = () => {
     setSelectedProject(null);
     setIsModalVisible(false);
+  };
+
+  const handleDelete = async (projectId) => {
+    notification.success({
+      message: "Success",
+      description: `Project ${projectId} deleted successfully.`,
+    });
   };
 
   const filteredData = !projects
@@ -81,7 +88,7 @@ const Table = ({ projects }) => {
 
           <Button type="text" className="hover:text-primary" icon={<FiEdit />} onClick={() => handleEdit(record)} />
 
-          <Button type="text" danger className="hover:text-primary" icon={<AiOutlineDelete />} />
+          <Button type="text" danger className="hover:text-primary" icon={<AiOutlineDelete />} onClick={() => handleDelete(record.id)} />
         </div>
       ),
     },
@@ -126,7 +133,7 @@ const Table = ({ projects }) => {
                   <IoIosArrowForward />
                 </Button>
               </div>
-              <div className="">
+              <div className="hidden lg:block">
                 <span>
                   Showing {currentPage} to {entriesPerPage} of {projects ? projects.length : data.length} entries
                 </span>
