@@ -6,7 +6,7 @@ const UserPage = () => {
   const user = userStore((state) => state.user);
   return (
     <div>
-      UserPage
+      UserPage - zustand works
       <h3>{user.full_name}</h3>
       <h3>{user.email}</h3>
     </div>

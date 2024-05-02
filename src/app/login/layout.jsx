@@ -4,5 +4,5 @@ export const metadata = {
 };
 
 export default function LoginLayout({ children }) {
-  return <body>{children}</body>;
+  return <section>{children}</section>;
 }
