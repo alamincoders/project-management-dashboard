@@ -1,19 +1,26 @@
 "use client";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, notification } from "antd";
+import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
+  const router = useRouter();
   const onFinish = (values) => {
     console.log("Received values:", values);
     // Mock response htmlFor successful and unsuccessful logins
     if (values.username === "admin" && values.password === "123456") {
       // Successful login
-      console.info("Login successful!");
+      notification.success({
+        message: "Hurrah!",
+        description: `Login successful!`,
+      });
+      router.push("/");
     } else {
       // Unsuccessful login
-      console.error("Login failed");
-      console.log("Your default username: 'admin' and password: '123456'");
+      notification.error({
+        message: "Login Failed!",
+        description: `Your default username: 'admin' and password: '123456`,
+      });
     }
-    alert("Please check console panel for mock response");
   };
 
   return (
@@ -32,18 +39,18 @@ const LoginPage = () => {
               <h1 className="text-2xl font-semibold pb-5">Login</h1>
             </div>
             <Form name="loginForm" onFinish={onFinish} initialValues={{ remember: true }} className="mt-8 space-y-6 min-w-[320px]">
-              <Form.Item name="username" rules={[{ required: true, message: "Please input your username!" }]}>
+              <Form.Item label="Username" name="username" rules={[{ required: true, message: "Please input your username!" }]}>
                 <Input
                   size="large"
-                  placeholder="Username"
+                  placeholder="admin"
                   className="block w-full px-4 py-3 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                 />
               </Form.Item>
 
-              <Form.Item name="password" rules={[{ required: true, message: "Please input your password!" }]}>
+              <Form.Item label="Password" name="password" rules={[{ required: true, message: "Please input your password!" }]}>
                 <Input.Password
                   size="large"
-                  placeholder="Password"
+                  placeholder="123456"
                   className="block w-full px-4 py-3 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                 />
               </Form.Item>
