@@ -37,7 +37,7 @@
 ### Projects Overview Page
 
 - Display a list of projects with options to view, edit, or delete.
-- Use React Query to fetch project data from a mock API.
+- Use React Query to fetch project data from a mock data.
 
 ### Project Details Page
 
