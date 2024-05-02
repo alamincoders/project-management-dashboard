@@ -1,4 +1,5 @@
 "use client";
+import LoadingSkeleton from "@/components/LoadingSkeleton";
 import RecentActivities from "@/components/screen/RecentActivities";
 import { useProjectStore } from "@/store/project-store";
 import { useQuery } from "@tanstack/react-query";
@@ -78,7 +79,7 @@ const ProjectDetailsPage = ({ params }) => {
         </div>
         <div className="mt-8">
           {isError && <div>Error fetching project details</div>}
-          {isLoading && <div>Loading...</div>}
+          {isLoading && <LoadingSkeleton />}
           {project && (
             <Tabs defaultActiveKey="1" className="w-full">
               <TabPane tab="Tasks" key="1">

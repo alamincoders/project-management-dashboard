@@ -3,7 +3,7 @@ import DndBoard from "@/components/DndBoard";
 import TaskList from "@/components/screen/TaskList";
 import useTaskStore from "@/store/task-store";
 import { PlusOutlined } from "@ant-design/icons";
-import { Button, Divider, Input, List, message, Modal } from "antd";
+import { Button, Collapse, Divider, Input, List, message, Modal } from "antd";
 import { useState } from "react";
 
 const TaskManagementPage = () => {
@@ -82,7 +82,26 @@ const TaskManagementPage = () => {
             dataSource={completedTasks}
             renderItem={(item, index) => (
               <List.Item>
-                <List.Item.Meta title={item.description} key={index} />
+                <Collapse
+                  className="w-full"
+                  size="small"
+                  items={[
+                    {
+                      key: item.id,
+                      label: item.description,
+                      children: (
+                        <div>
+                          <li>
+                            <span className="font-semibold">Deadline: </span> {`${item.deadline}`}
+                          </li>
+                          <li>
+                            <span className="font-semibold"> Assigned to: </span> {`${item.assignee}`}
+                          </li>
+                        </div>
+                      ),
+                    },
+                  ]}
+                />
               </List.Item>
             )}
           />

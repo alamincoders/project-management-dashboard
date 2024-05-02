@@ -1,5 +1,5 @@
 "use client";
-import { Checkbox, Input, List, Modal } from "antd";
+import { Checkbox, Collapse, Input, List, Modal } from "antd";
 import { useState } from "react";
 
 const TaskList = ({ tasks, onCompleteTask, onEditTask }) => {
@@ -31,7 +31,27 @@ const TaskList = ({ tasks, onCompleteTask, onEditTask }) => {
               <button onClick={() => handleEdit(task.id, task.description)}>Edit</button>,
             ]}
           >
-            <List.Item.Meta title={task.description} description={`Deadline: ${task.deadline}, Assigned to: ${task.assignee}`} />
+            {/*    <List.Item.Meta title={task.description} description={`Deadline: ${task.deadline}, Assigned to: ${task.assignee}`} /> */}
+            <Collapse
+              className="w-full"
+              size="small"
+              items={[
+                {
+                  key: task.id,
+                  label: task.description,
+                  children: (
+                    <div>
+                      <li>
+                        <span className="font-semibold">Deadline: </span> {`${task.deadline}`}
+                      </li>
+                      <li>
+                        <span className="font-semibold"> Assigned to: </span> {`${task.assignee}`}
+                      </li>
+                    </div>
+                  ),
+                },
+              ]}
+            />
           </List.Item>
         )}
       />
