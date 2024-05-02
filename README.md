@@ -27,6 +27,39 @@
 - [x] Zustand
 - [x] React Query
 
+## Features
+
+### Authentication Page
+
+- Create a login form with validation using Ant Design for form elements and validation feedback.
+- Mock responses for successful and unsuccessful logins.
+
+### Projects Overview Page
+
+- Display a list of projects with options to view, edit, or delete.
+- Use React Query to fetch project data from a mock API.
+
+### Project Details Page
+
+- Show detailed information about selected projects, including tasks, team members, and recent activities.
+- Functionalities to add new tasks and assign team members.
+
+### Task Management
+
+- Tasks can be added, edited, or marked as completed.
+- Detailed view for each task with descriptions, deadlines, and assigned members.
+- Implement drag-and-drop feature to change task status (e.g., To Do, In Progress, Done) using Zustand to manage state.
+
+### Task Filters and Search Functionality
+
+- Allow users to filter tasks by status, due date, or assignee.
+- Provide a search bar for quick task search.
+
+### Interactive Dashboard
+
+- Use Ant Design components (modals, dropdowns, tooltips) to enhance interactivity.
+- Ensure responsiveness with Tailwind CSS.
+
 ## Getting Started
 
 - clone this repo
